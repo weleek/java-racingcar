@@ -3,6 +3,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racing.domain.Car;
 import racing.domain.Cars;
+import racing.exception.CarGenerateException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ class CarsTest {
     private Cars cars;
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws CarGenerateException {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("test1"));
         carList.add(new Car("test2"));

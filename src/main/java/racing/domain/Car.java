@@ -1,12 +1,14 @@
 package racing.domain;
 
+import racing.exception.CarGenerateException;
+
 public class Car {
     public static final int NAME_LENGTH = 5;
 
     private final String name;
     private int numberOfAdvance = 0;
 
-    public Car(String name) {
+    public Car(String name) throws CarGenerateException {
         validationName(name);
         this.name = name;
     }
@@ -15,9 +17,9 @@ public class Car {
         return numberOfAdvance;
     }
 
-    public void validationName(String name) {
+    public void validationName(String name) throws CarGenerateException {
         if(name.length() > NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.");
+            throw new CarGenerateException("자동차 이름은 5자를 초과할 수 없습니다.");
         }
     }
 

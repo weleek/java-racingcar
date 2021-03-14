@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.exception.CarGenerateException;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -8,14 +10,14 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars){
+    public Cars(List<Car> cars) throws CarGenerateException {
         validation(cars);
         this.cars = cars;
     }
 
-    public void validation(List<Car> cars) {
+    public void validation(List<Car> cars) throws CarGenerateException {
         if (isDuplicated(getCarNames(cars))) {
-            throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
+            throw new CarGenerateException("자동차의 이름은 중복될 수 없습니다.");
         }
     }
 

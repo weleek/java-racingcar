@@ -3,6 +3,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racing.domain.Car;
 import racing.domain.GameCondition;
+import racing.exception.CarGenerateException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -11,7 +12,7 @@ public class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
-    void advance(boolean expected, int result) {
+    void advance(boolean expected, int result) throws CarGenerateException {
         GameCondition condition = () -> expected;
 
         Car car = new Car("test");
@@ -22,7 +23,7 @@ public class CarTest {
 
     @Test
     void validationName(){
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(CarGenerateException.class)
                 .isThrownBy(() -> {
                     new Car("test1234");
                 });

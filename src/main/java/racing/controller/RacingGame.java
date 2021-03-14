@@ -19,7 +19,7 @@ public class RacingGame {
         conditionStrategy = new ConditionStrategy();
     }
 
-    public void Race(Cars cars, int numberOfAttempts){
+    public void race(Cars cars, int numberOfAttempts){
         resultView.showStartRace(cars.getCars());
         for (int i = 0; i < numberOfAttempts; i++) {
             cars.advanceCars(conditionStrategy);
@@ -31,7 +31,7 @@ public class RacingGame {
         List<String> names = inputView.getNames();
         int numberOfAttempts = inputView.getNumberOfAttempts();
         Cars cars = CarFactory.generateCars(names);
-        Race(cars, numberOfAttempts);
+        race(cars, numberOfAttempts);
         resultView.showWinners(cars.getWinnerNames());
     }
 }
